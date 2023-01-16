@@ -4,32 +4,30 @@ import { Api } from "../../service/api";
 import Received from "../Received";
 import { Simulation } from "./style";
 
-function Form () {
+
+function Form (): JSX.Element {
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const [response, setResponse] = useState<Array<any>>()
-    const [days, setDays] = useState([])
 
-    async function onSubmit ( data: any ) {
+    async function onSubmit ( data: any ): Promise<void> {
 
         data.mdr = data.mdr.replace(',', '.')
 
         if (data.days) {
             const length = data.days.length
 
-            console.log(length, data.days[length-1])
             if (data.days[length-1] === ',') {data.days = data.days.slice(0,-1)}
             data.days = data.days.split(',')
-            setDays(data.days)
             const result = await Api.post('', data)
             setResponse(result.data)
 
-            return response
+            return 
         }
 
         data.days = ['1', '15', "30", "90"]
-        setDays(data.days)
         
         const result = await Api.post('', data)
 
@@ -73,7 +71,7 @@ function Form () {
                     <input className="submit" type="submit" value="Simular" />
                 </form>
             </Simulation>
-           {response && <Received response={Array(response)} days={days} />}
+           {response && <Received response={Array(response)} />}
             
         </>
     )

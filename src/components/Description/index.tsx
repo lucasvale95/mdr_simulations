@@ -1,7 +1,7 @@
 import { InfoDescription } from "./style"
 
 
-function Description() {
+function Description(): JSX.Element {
     return (
         <InfoDescription>
             <h4>O que é taxa MDR?</h4>

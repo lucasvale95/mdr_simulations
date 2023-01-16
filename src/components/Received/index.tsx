@@ -2,7 +2,7 @@
 import { Infos } from "./styled"
 
 
-function Received( {response}: any ){
+function Received( {response}: any ): JSX.Element{    
 
     const keys = Object.keys(response[0])
     const values = Object.values(response[0])
@@ -15,7 +15,7 @@ function Received( {response}: any ){
             <h3>VOCÊ RECEBERÁ:</h3>
             
             {values.map((item, index) => (
-                <List keys={keys} values={values} index={index}/> 
+                <List key={index} keys={keys} values={values} index={index}/> 
             ))}          
             
         

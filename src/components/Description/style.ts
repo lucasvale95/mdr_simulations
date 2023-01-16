@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const InfoDescription = styled.section`
     padding: 25px 35px 25px 25px;
 
-    width: 30vw;
+    width: 40vw;
     max-width: 450px;
     min-width: 320px;
     height: 50vh;

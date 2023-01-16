@@ -4,8 +4,7 @@ export const Simulation = styled.div`
 
     padding: 25px 35px 25px 25px;
 
-    width: 50vw;
-    max-width: 450px;
+    max-width: 500px;
     min-width: 320px;
     height: 50vh;
 
