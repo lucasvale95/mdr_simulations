@@ -48,7 +48,7 @@ function Form () {
                         <label htmlFor="amount">Informe o valor da venda*</label>
                         <span className="prefix">R$</span>
                         <input type='float' className="input-pref" {...register("amount", { required: true })} />
-                        {errors.value && <span className="error">Campo obrigatório</span>}
+                        {errors.amount && <span className="error">Campo obrigatório</span>}
                     </div>
                     
                     <div>

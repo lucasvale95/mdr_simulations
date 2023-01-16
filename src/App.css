@@ -8,7 +8,19 @@
   align-items: center;
   justify-content: center;
 
-  margin-top: -100px;
+  background-color: rgba(209, 215, 250, 0.119);
+
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 2px 3px 10px 0px rgba(130,153,245,0.3);
+
+  
 
 }
 

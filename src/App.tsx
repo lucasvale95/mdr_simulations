@@ -1,12 +1,18 @@
 
 import './App.css';
+import Description from './components/Description';
 import Form from './components/Form';
 
 function App() {
   return (
     <div className="App">
 
-      <Form />
+      <div className="container">
+        <Description />
+        <Form />
+      </div>
+
+      
 
     </div>
   );
