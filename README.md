@@ -79,3 +79,10 @@ yarn start
 ```
 
 Open http://localhost:3000 to view it in the browser.
+
+
+## ⚡ Deploy
+
+Para acesso e testes em produção:
+
+* [Projeto em produção](https://mdr-simulations-6miq4asrf-lucasvale95.vercel.app/) - Deploy realizado no vercel
