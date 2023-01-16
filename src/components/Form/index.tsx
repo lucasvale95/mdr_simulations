@@ -1,10 +1,40 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Api } from "../../service/api";
+import Received from "../Received";
 import { Simulation } from "./style";
 
 function Form () {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = (data: any) => console.log(data);
+
+    const [response, setResponse] = useState<Array<any>>()
+    const [days, setDays] = useState([])
+
+    async function onSubmit ( data: any ) {
+
+        data.mdr = data.mdr.replace(',', '.')
+
+        if (data.days) {
+            const length = data.days.length
+
+            console.log(length, data.days[length-1])
+            if (data.days[length-1] === ',') {data.days = data.days.slice(0,-1)}
+            data.days = data.days.split(',')
+            setDays(data.days)
+            const result = await Api.post('', data)
+            setResponse(result.data)
+
+            return response
+        }
+
+        data.days = ['1', '15', "30", "90"]
+        setDays(data.days)
+        
+        const result = await Api.post('', data)
+
+        setResponse(result.data)
+    }
 
     return (
         <>
@@ -15,21 +45,21 @@ function Form () {
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <div>
-                        <label htmlFor="value">Informe o valor da venda*</label>
+                        <label htmlFor="amount">Informe o valor da venda*</label>
                         <span className="prefix">R$</span>
-                        <input type='number' className="input-pref" {...register("value", { required: true })} />
+                        <input type='float' className="input-pref" {...register("amount", { required: true })} />
                         {errors.value && <span className="error">Campo obrigatório</span>}
                     </div>
                     
                     <div>
-                        <label htmlFor="value">Em quantas parcelas*</label>
-                        <input type='number' {...register("installments", { required: true })} />
+                        <label htmlFor="installments">Em quantas parcelas*</label>
+                        <input type='number' max="12" {...register("installments", { required: true })} />
                          {errors.installments && <span className="error">Campo obrigatório</span>} <span className="max">Máximo de 12 parcelas</span>
                     </div>
 
                     <div>
-                        <label htmlFor="value">Informe o porcentual de MDR*</label>
-                        <input type='number' {...register("mdr", { required: true })} />
+                        <label htmlFor="mdr">Informe o porcentual de MDR*</label>
+                        <input type='float' {...register("mdr", { required: true })} />
                         {errors.mdr && <span className="error">Campo obrigatório</span>}
                     </div>
                     
@@ -40,9 +70,11 @@ function Form () {
 
                     </div>
                 
-                    <input className="submit" type="submit" value="Simular" onClick={(e)=> {}}/>
+                    <input className="submit" type="submit" value="Simular" />
                 </form>
             </Simulation>
+           {response && <Received response={Array(response)} days={days} />}
+            
         </>
     )
 }

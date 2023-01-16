@@ -8,7 +8,8 @@ export const Simulation = styled.div`
     max-width: 450px;
     min-width: 320px;
     height: 50vh;
-    position: absolute;
+
+    z-index: 1;
 
     display: flex;
     flex-direction: column;
@@ -17,7 +18,6 @@ export const Simulation = styled.div`
 
     background-color: white;
 
-    border: 1px solid #bcbcbc;
 
     h2{
         color: #5b5b5b;
